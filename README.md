@@ -1,4 +1,4 @@
-# pong_game
+# Pong
 
 Pong game made with Flutter using [Flame game engine](https://docs.flame-engine.org/latest/index.html).
 
