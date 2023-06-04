@@ -1,6 +1,9 @@
 # pong_game
 
-A new Flutter project.
+Pong game made with Flutter using [Flame game engine](https://docs.flame-engine.org/latest/index.html).
+
+Main purpose of the game is going to be multiplayer mode using sockets.
+
 
 ## Getting Started
 
