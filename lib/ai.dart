@@ -7,7 +7,7 @@ import 'package:pong_game/settings.dart';
 import 'ball.dart';
 
 class Ai extends Ball with HasGameRef {
-  double speed = 3.0;
+  double speed = 0.0;
 
   /// Multiplier for the original ball's velocity
   late Paddle aiPaddle;
@@ -37,7 +37,6 @@ class Ai extends Ball with HasGameRef {
 
       /// Generate random number between 0 and 1
       difficultycompare = Random().nextDouble();
-      print(difficultycompare);
     }
     // If the AI ball is below the AI paddle and above the bottom of the screen,
     // move the AI ball as original ball, but faster (speed is multiplier)

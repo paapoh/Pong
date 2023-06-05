@@ -17,6 +17,13 @@ class MyGame extends FlameGame
   late Ball ball;
   late Ai ai;
 
+  ValueNotifier<int>
+      scorePlayer1; // Declare scorePlayer1 as an instance variable
+  ValueNotifier<int> scorePlayer2;
+
+  MyGame(this.scorePlayer1,
+      this.scorePlayer2); // Add scorePlayer1 parameter to the constructor
+
   // Background color of the game
   @override
   Color backgroundColor() => const Color.fromARGB(255, 9, 13, 18);
@@ -45,9 +52,16 @@ class MyGame extends FlameGame
     // Ball movement based on set velocity and change of time between frames
     ball.position += ball.velocity * dt;
     // If ball is out of bounds, end game
+
     if (ball.position.y < 0) {
+      if (gameEndedNotifier.value == false) {
+        scorePlayer2.value++;
+      }
       gameEndedNotifier.value = true;
     } else if (ball.position.y > size.y) {
+      if (gameEndedNotifier.value == false) {
+        scorePlayer1.value++;
+      }
       gameEndedNotifier.value = true;
     }
   }
