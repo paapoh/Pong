@@ -7,7 +7,7 @@ import 'package:pong_game/settings.dart';
 import 'ball.dart';
 
 class Ai extends Ball with HasGameRef {
-  double speed = 0.0;
+  double speed = 3.0;
 
   /// Multiplier for the original ball's velocity
   late Paddle aiPaddle;
