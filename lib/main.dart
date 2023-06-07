@@ -1,6 +1,10 @@
 import 'dart:math';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'games/againstBotPong.dart';
+import 'games/singlePlayerPong.dart';
+import 'games/localMultiplayerPong.dart';
+import 'games/localMultiplayerPong.dart';
 import 'pong.dart';
 import 'settings.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -8,11 +12,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 void main() {
   final scorePlayer1 = ValueNotifier<int>(0);
   final scorePlayer2 = ValueNotifier<int>(0);
-  final singlePlayerMode = ValueNotifier<bool>(false);
-  final againstBotMode = ValueNotifier<bool>(false);
-  final localMultiplayerMode = ValueNotifier<bool>(false);
-  final game = MyGame(scorePlayer1, scorePlayer2, singlePlayerMode,
-      againstBotMode, localMultiplayerMode);
+
+  final game = MyGame();
 
   runApp(
     MaterialApp(
@@ -39,7 +40,10 @@ void main() {
                             width: min(MediaQuery.of(context).size.width, 500),
                             height: 50, // fill width with margins
                             child: ElevatedButton(
-                              onPressed: game.resetGame,
+                              onPressed: () {
+                                //  game = SinglePlayerGame();
+                                game.resetGame();
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: primary,
                                 foregroundColor: background,
@@ -61,12 +65,7 @@ void main() {
                             height: 50,
                             child: ElevatedButton(
                               onPressed: () {
-                                singlePlayerMode.value = true;
-                                againstBotMode.value = false;
-                                localMultiplayerMode.value = false;
-                                // Yksinpeli button pressed
-                                // Do something
-                                game.resetGame();
+                                // game = SinglePlayerGame();
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: primary,
@@ -89,14 +88,7 @@ void main() {
                             height: 50,
                             child: ElevatedButton(
                               onPressed: () {
-                                // Pelaa bottia vastaan button pressed
-                                // Do something
-                                // asettaa muut False
-                                // TODO: automaattisesti kaikki muut false
-                                singlePlayerMode.value = false;
-                                againstBotMode.value = true;
-                                localMultiplayerMode.value = false;
-                                game.resetGame();
+                                // game = AgainstBotMode();
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: primary,
@@ -118,14 +110,7 @@ void main() {
                             width: min(MediaQuery.of(context).size.width, 500),
                             height: 50,
                             child: ElevatedButton(
-                              onPressed: () {
-                                singlePlayerMode.value = false;
-                                againstBotMode.value = false;
-                                localMultiplayerMode.value = true;
-                                // Paikallinen moninpeli button pressed
-                                // Do something
-                                game.resetGame();
-                              },
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: primary,
                                 foregroundColor: background,
@@ -147,9 +132,6 @@ void main() {
                             height: 50,
                             child: ElevatedButton(
                               onPressed: () {
-                                singlePlayerMode.value = false;
-                                againstBotMode.value = false;
-                                localMultiplayerMode.value = false;
                                 // Moninpeli button pressed
                                 // Do something
                               },
