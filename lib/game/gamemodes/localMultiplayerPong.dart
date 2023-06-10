@@ -1,3 +1,3 @@
-import 'package:pong_game/pong.dart';
+import '../pong.dart';
 
 class LocalMultiplayerGame extends MyGame {}

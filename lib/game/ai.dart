@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:pong_game/paddle.dart';
 import 'package:pong_game/settings.dart';
 
 import 'ball.dart';
+import 'paddle.dart';
 
 class Ai extends Ball with HasGameRef {
   double speed = 3.0;

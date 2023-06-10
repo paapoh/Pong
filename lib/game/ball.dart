@@ -1,8 +1,8 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
+import '../settings.dart';
 import 'paddle.dart';
-import 'settings.dart';
 
 class Ball extends CircleComponent with CollisionCallbacks {
   /// Initial velocity of the ball

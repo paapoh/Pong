@@ -3,7 +3,8 @@ import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'settings.dart';
+
+import '../settings.dart';
 
 /// Paddle width as a percentage of the screen width
 const double paddleWidth = 0.1;

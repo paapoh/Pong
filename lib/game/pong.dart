@@ -3,25 +3,26 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 
-import 'ai.dart';
+import '../settings.dart';
 import 'paddle.dart';
 import 'ball.dart';
-import 'settings.dart';
 
 class MyGame extends FlameGame
     with HorizontalDragDetector, HasCollisionDetection {
-  ValueNotifier<bool> gameEndedNotifier = ValueNotifier<bool>(false);
-
   @override
   bool debugMode = false;
 
   late Paddle topPaddle;
   late Paddle bottomPaddle;
   late Ball ball;
+  ValueNotifier<bool> gameEndedNotifier = ValueNotifier<bool>(false);
+  ValueNotifier<int> pointsTop = ValueNotifier<int>(0);
+  ValueNotifier<int> pointsBottom = ValueNotifier<int>(0);
+  final singlePlayerGame = false;
 
   // Background color of the game
   @override
-  Color backgroundColor() => const Color.fromARGB(255, 9, 13, 18);
+  Color backgroundColor() => transparent;
 
   // Called when the game is loaded
   @override
@@ -36,8 +37,6 @@ class MyGame extends FlameGame
     add(ball);
 
     add(ScreenHitbox());
-
-    resetGame();
   }
 
   @override
@@ -47,10 +46,23 @@ class MyGame extends FlameGame
     // Ball movement based on set velocity and change of time between frames
     ball.position += ball.velocity * dt;
     // If ball is out of bounds, end game
+    checkPoints();
+    checkIfOutOfBounds();
+  }
+
+  void checkIfOutOfBounds() {
     if (ball.position.y < 0) {
       gameEndedNotifier.value = true;
     } else if (ball.position.y > size.y) {
       gameEndedNotifier.value = true;
+    }
+  }
+
+  void checkPoints() {
+    if (ball.position.y < 0 && gameEndedNotifier.value == false) {
+      pointsBottom.value++;
+    } else if (ball.position.y > size.y && gameEndedNotifier.value == false) {
+      pointsTop.value++;
     }
   }
 
