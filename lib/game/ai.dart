@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flame/components.dart';
-import 'package:pong_game/paddle.dart';
 import 'package:pong_game/settings.dart';
 
 import 'ball.dart';
+import 'paddle.dart';
 
 class Ai extends Ball with HasGameRef {
   double speed = 3.0;
@@ -24,7 +24,7 @@ class Ai extends Ball with HasGameRef {
   Ai(this.ball, this.playerPaddle, this.aiPaddle, this.difficulty) {
     super.position = ball.position;
     super.radius = ball.radius;
-    super.paint = paintWhite;
+    super.paint = paintTransparent;
     super.anchor = ball.anchor;
   }
 
@@ -37,7 +37,6 @@ class Ai extends Ball with HasGameRef {
 
       /// Generate random number between 0 and 1
       difficultycompare = Random().nextDouble();
-      print(difficultycompare);
     }
     // If the AI ball is below the AI paddle and above the bottom of the screen,
     // move the AI ball as original ball, but faster (speed is multiplier)

@@ -3,7 +3,8 @@ import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'settings.dart';
+
+import '../settings.dart';
 
 /// Paddle width as a percentage of the screen width
 const double paddleWidth = 0.1;
@@ -60,6 +61,7 @@ class Paddle extends RectangleComponent with CollisionCallbacks, HasGameRef {
 
   // Runs when the game is resized
   @override
+  // ignore: avoid_renaming_method_parameters
   void onGameResize(Vector2 gamesize) {
     super.onGameResize(gamesize);
     // If the offset is negative, the paddle is offset from the bottom of the screen
@@ -92,6 +94,7 @@ class CornerCircle extends CircleComponent {
   }) : super(paint: paint);
 
   @override
+  // ignore: avoid_renaming_method_parameters
   void onGameResize(Vector2 gamesize) {
     super.onGameResize(gamesize);
     position = position == Vector2.zero()
