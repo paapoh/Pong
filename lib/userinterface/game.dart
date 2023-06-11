@@ -4,6 +4,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:pong_game/game/pong.dart';
+import 'package:pong_game/userinterface/backbutton.dart';
 
 import '../settings.dart';
 import 'points.dart';
@@ -18,7 +19,9 @@ class PlayGame extends StatelessWidget {
       backgroundColor: background,
       body: Stack(
         children: [
-          GameWidget(game: game),
+          GameWidget(
+            game: game,
+          ),
           Points(game: game),
           ValueListenableBuilder<bool>(
             valueListenable: game.gameEndedNotifier,
@@ -30,18 +33,7 @@ class PlayGame extends StatelessWidget {
                       color: Colors.black
                           .withOpacity(0.4), // semi-transparent black
                     ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20, top: 50),
-                        child: BackButton(
-                          color: primary,
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                        ),
-                      ),
-                    ),
+                    const CustomBackButton(),
                     Align(
                       alignment: Alignment.bottomCenter,
                       child: Padding(
@@ -49,7 +41,7 @@ class PlayGame extends StatelessWidget {
                             bottom: 20.0, left: 20.0, right: 20.0),
                         child: SizedBox(
                           width: min(MediaQuery.of(context).size.width, 500),
-                          height: 50, // fill width with margins
+                          height: 60, // fill width with margins
                           child: ElevatedButton(
                             onPressed: () {
                               game.resetGame();
@@ -61,7 +53,10 @@ class PlayGame extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(16.0),
                               ),
                             ),
-                            child: const Text('Play Again'),
+                            child: const Text(
+                              'Play Again',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                       ),
