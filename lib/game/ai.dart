@@ -24,7 +24,7 @@ class Ai extends Ball with HasGameRef {
   Ai(this.ball, this.playerPaddle, this.aiPaddle, this.difficulty) {
     super.position = ball.position;
     super.radius = ball.radius;
-    super.paint = paintWhite;
+    super.paint = paintTransparent;
     super.anchor = ball.anchor;
   }
 
